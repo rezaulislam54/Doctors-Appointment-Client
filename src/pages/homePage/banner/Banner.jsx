@@ -3,12 +3,12 @@ import { FaArrowRightLong } from "react-icons/fa6";
 const Banner = () => {
   return (
     <div className="bg-[#5F6FFF]">
-      <div className="flex justify-between items-center px-10">
+      <div className="md:flex justify-between items-center px-10">
         <div className="text-white space-y-3">
-          <h1 className="w-[500px]  text-5xl font-bold">
+          <h1 className="md:w-[500px]  text-5xl font-bold">
             Book Appointment With Trusted Doctors
           </h1>
-          <p className="w-[450px]">
+          <p className="md:w-[450px]">
             Simply browse through our extensive list of trusted doctors,
             schedule your appointment hassle-free.
           </p>
