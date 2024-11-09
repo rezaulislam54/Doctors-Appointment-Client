@@ -5,7 +5,7 @@ const Banner = () => {
     <div className="bg-[#5F6FFF]">
       <div className="md:flex justify-between items-center px-10">
         <div className="text-white space-y-5">
-          <h1 className="md:w-[500px]  text-5xl font-bold">
+          <h1 className="md:w-[500px]  text-5xl font-bold leading-tight">
             Book Appointment With Trusted Doctors
           </h1>
           <div className="flex gap-4">
