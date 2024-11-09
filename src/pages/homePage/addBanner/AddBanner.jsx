@@ -1,6 +1,6 @@
 const AddBanner = () => {
   return (
-    <div className="bg-[#5F6FFF] rounded-xl flex px-4 md:px-8 lg:px-12">
+    <div className="bg-[#5F6FFF] rounded-xl flex px-4 md:px-8 lg:px-12 my-10">
       <div className=" flex-1 py-8 sm:py-10 md:py-16 lg:py-24 pl-5 space-y-2 lg:space-y-4">
         <p className="text-white text-xl md:text-4xl lg:text-5xl font-bold">
           Book Appointment{" "}
