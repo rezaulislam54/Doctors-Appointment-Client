@@ -1,7 +1,7 @@
 import { doctors } from "../../../assets/assets_frontend/assets";
 const TopDoctors = () => {
   return (
-    <div>
+    <div className="my-16">
       <div className="text-center">
         <h1 className="text-3xl font-semibold mb-2">Top Doctors to Book</h1>
         <p>Simply browse through our extensive list of trusted doctors.</p>
