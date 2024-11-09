@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { specialityData } from "../../../assets/assets_frontend/assets";
 const Speciality = () => {
   return (
-    <div className="flex flex-col items-center justify-center text-center my-10">
+    <div className="flex flex-col items-center justify-center text-center my-16">
       <h1 className="text-3xl font-bold mb-2">Find by Speciality</h1>
       <p className="sm:w-1/3 md:w-[500px]">
         Simply browse through our extensive list of trusted doctors, schedule

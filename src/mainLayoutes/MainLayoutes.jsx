@@ -3,10 +3,12 @@ import Navber from "../components/Navbar";
 
 const MainLayoutes = () => {
     return (
-        <div>
-            <Navber></Navber>
-            <Outlet></Outlet>
+      <div>
+        <Navber></Navber>
+        <div className="container mx-auto">
+          <Outlet></Outlet>
         </div>
+      </div>
     );
 };
 
