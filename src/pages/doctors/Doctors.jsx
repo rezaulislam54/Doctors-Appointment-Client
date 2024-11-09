@@ -3,7 +3,7 @@ const Doctors = () => {
   return (
     <div className="my-12">
       <h1 className="font-medium">Browse through the doctors specialist.</h1>
-      <div className="grid grid-cols-1 md:grid-cols-6 md:gap-5 mt-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 md:gap-5 mt-8">
         <div className="col-span-1 space-y-4">
           <div className="border border-[#B4B4B4] rounded-md pl-3 py-1">
             General physician
@@ -24,7 +24,7 @@ const Doctors = () => {
             Gastroenterologist
           </div>
         </div>
-        <div className="col-span-5 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        <div className="col-span-5 md:col-span-2 lg:col-span-5 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {doctors.map((item, index) => (
             <div
               className="border-2 border-[#C9D8FF] rounded-lg cursor-pointer hover:translate-y-[-10px] transition-all duration-500"
