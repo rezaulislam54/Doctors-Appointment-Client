@@ -8,7 +8,7 @@ const Speciality = () => {
         Simply browse through our extensive list of trusted doctors, schedule
         your appointment hassle-free.
       </p>
-      <div className="flex sm:justify-center items-center gap-6 mt-8">
+      <div className="flex flex-wrap justify-center items-center gap-6 mt-8">
         {specialityData.map((item, index) => (
           <Link
             className="flex flex-col items-center cursor-pointer flex-shrink-0 hover:translate-y-[-10px] transition-all duration-500"
