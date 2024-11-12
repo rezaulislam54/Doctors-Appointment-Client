@@ -16,6 +16,10 @@ const router = createBrowserRouter([
         path: "/doctors",
         element: <Doctors></Doctors>,
       },
+      {
+        path: "/doctors/:speciality",
+        element: <Doctors></Doctors>,
+      },
     ],
   },
 ]);

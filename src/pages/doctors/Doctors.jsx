@@ -1,5 +1,23 @@
+import { useParams } from "react-router-dom";
 import { doctors } from "../../assets/assets_frontend/assets";
+import { useEffect, useState } from "react";
+
 const Doctors = () => {
+  const { speciality } = useParams();
+  const [filterData, setfilterData] = useState([]);
+
+  const applyFilter = () => {
+    if (speciality) {
+      setfilterData(doctors?.filter((Doc) => Doc.speciality === speciality));
+    } else {
+      setfilterData(doctors);
+    }
+  };
+
+  useEffect(() => {
+    applyFilter();
+  }, [doctors, speciality]);
+
   return (
     <div className="my-12">
       <h1 className="font-medium">Browse through the doctors specialist.</h1>
@@ -25,7 +43,7 @@ const Doctors = () => {
           </div>
         </div>
         <div className="col-span-5 md:col-span-2 lg:col-span-5 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5">
-          {doctors.map((item, index) => (
+          {filterData?.map((item, index) => (
             <div
               className="border-2 border-[#C9D8FF] rounded-lg cursor-pointer hover:translate-y-[-10px] transition-all duration-500"
               key={index}
