@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { doctors } from "../../assets/assets_frontend/assets";
 import { useEffect, useState } from "react";
+import DoctorCard from "../../components/DoctorCard";
 
 const Doctors = () => {
   const { speciality } = useParams();
@@ -87,22 +88,7 @@ const Doctors = () => {
         </div>
         <div className="col-span-5 md:col-span-2 lg:col-span-5 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {filterData?.map((item, index) => (
-            <div
-              className="border-2 border-[#C9D8FF] rounded-lg cursor-pointer hover:translate-y-[-10px] transition-all duration-500"
-              key={index}
-            >
-              <div className="bg-[#EAEFFF] rounded-t-lg">
-                <img src={item.image} alt="" />
-              </div>
-              <div className="p-3">
-                <div className="flex gap-3 items-center">
-                  <p className="w-2 h-2 bg-[#0FBF00] rounded-full"></p>
-                  <p className="text-[#0FBF00]">Available</p>
-                </div>
-                <h3 className="font-medium text-xl">{item.name}</h3>
-                <p>{item.speciality}</p>
-              </div>
-            </div>
+            <DoctorCard key={index} item={item}></DoctorCard>
           ))}
         </div>
       </div>

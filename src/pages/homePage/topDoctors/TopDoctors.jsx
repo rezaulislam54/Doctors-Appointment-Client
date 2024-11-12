@@ -1,4 +1,5 @@
 import { doctors } from "../../../assets/assets_frontend/assets";
+import DoctorCard from "../../../components/DoctorCard";
 const TopDoctors = () => {
   return (
     <div className="my-16">
@@ -8,22 +9,7 @@ const TopDoctors = () => {
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 mt-8">
         {doctors?.slice(0, 10)?.map((item, idex) => (
-          <div
-            className="border-2 border-[#C9D8FF] rounded-lg cursor-pointer hover:translate-y-[-10px] transition-all duration-500"
-            key={idex}
-          >
-            <div className="bg-[#EAEFFF] rounded-t-lg">
-              <img src={item.image} alt="" />
-            </div>
-            <div className="p-3">
-              <div className="flex gap-3 items-center">
-                <p className="w-2 h-2 bg-[#0FBF00] rounded-full"></p>
-                <p className="text-[#0FBF00]">Available</p>
-              </div>
-              <h3 className="font-medium text-xl">{item.name}</h3>
-              <p>{item.speciality}</p>
-            </div>
-          </div>
+          <DoctorCard key={idex} item={item}></DoctorCard>
         ))}
       </div>
       <div className="flex justify-center items-center">
