@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
+
 const DoctorCard = ({ item }) => {
   return (
-    <div
-      onClick={`/doctors/${item._id}`}
+    <Link
+      to={`/doctors/${item._id}`}
       className="border-2 border-[#C9D8FF] rounded-lg cursor-pointer hover:translate-y-[-10px] transition-all duration-500"
     >
       <div className="bg-[#EAEFFF] rounded-t-lg">
@@ -15,7 +17,7 @@ const DoctorCard = ({ item }) => {
         <h3 className="font-medium text-xl">{item.name}</h3>
         <p>{item.speciality}</p>
       </div>
-    </div>
+    </Link>
   );
 };
 
