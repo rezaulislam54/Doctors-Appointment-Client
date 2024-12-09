@@ -1,6 +1,6 @@
 const AboutPage = () => {
   return (
-    <div>
+    <div className="container mx-auto">
       <h1 className="text-center text-2xl my-10">
         ABOUT <span className="font-medium">US</span>
       </h1>
@@ -34,6 +34,35 @@ const AboutPage = () => {
             and healthcare providers, making it easier for you to access the
             care you need, when you need it.
           </p>
+        </div>
+      </div>
+
+      <div className="mt-8 mb-20 mx-4">
+        <h1 className="text-2xl mb-5">
+          WHY <span className="font-semibold">CHOOSE US</span>
+        </h1>
+        <div className="flex flex-col md:flex-row">
+          <div className="border px-10 md:px-16 py-8 sm:py-16 hover:bg-primary hover:text-white transition-all duration-300 text-gray-600 cursor-pointer">
+            <h1 className="text-xl font-bold mb-5">EFFICIENCY:</h1>
+            <p>
+              Streamlined appointment scheduling that fits into your busy
+              lifestyle.
+            </p>
+          </div>
+          <div className="border px-10 md:px-16 py-8 sm:py-16 hover:bg-primary hover:text-white transition-all duration-300 text-gray-600 cursor-pointer">
+            <h1 className="text-xl font-bold mb-5">CONVENIENCE:</h1>
+            <p>
+              Access to a network of trusted healthcare professionals in your
+              area.
+            </p>
+          </div>
+          <div className="border px-10 md:px-16 py-8 sm:py-16 hover:bg-primary hover:text-white transition-all duration-300 text-gray-600 cursor-pointer">
+            <h1 className="text-xl font-bold mb-5">PERSONALIZATION:</h1>
+            <p>
+              Tailored recommendations and reminders to help you stay on top of
+              your health.
+            </p>
+          </div>
         </div>
       </div>
     </div>
