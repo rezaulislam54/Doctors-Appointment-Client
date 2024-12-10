@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const DoctorCard = ({ item }) => {
   return (
     <Link
-      to={`/doctors/${item._id}`}
+      to={`/doctor/${item._id}`}
       className="border-2 border-[#C9D8FF] rounded-lg cursor-pointer hover:translate-y-[-10px] transition-all duration-500"
     >
       <div className="bg-[#EAEFFF] rounded-t-lg">
