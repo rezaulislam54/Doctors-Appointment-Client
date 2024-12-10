@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const DoctorCard = ({ item }) => {
+  const navigate = useNavigate();
   return (
-    <Link
-      to={`/doctor/${item._id}`}
+    <div
+      onClick={() => navigate(`/doctor/${item._id}`)}
       className="border-2 border-[#C9D8FF] rounded-lg cursor-pointer hover:translate-y-[-10px] transition-all duration-500"
     >
       <div className="bg-[#EAEFFF] rounded-t-lg">
@@ -17,7 +18,7 @@ const DoctorCard = ({ item }) => {
         <h3 className="font-medium text-xl">{item.name}</h3>
         <p>{item.speciality}</p>
       </div>
-    </Link>
+    </div>
   );
 };
 
