@@ -8,14 +8,74 @@ const CardDetails = () => {
 
   const [docData, setdocData] = useState(null);
 
+  const [docSlots, setdocSlots] = useState([]);
+  const [slotIndex, setslotIndex] = useState(0);
+  const [slotTime, setslotTime] = useState("");
+
   const fetchDocInfo = () => {
     const doctor = doctors.find((doc) => doc._id === docId);
     setdocData(doctor);
   };
 
+  const getAvailableSlots = async () => {
+    setdocSlots([]);
+
+    // geetting current Date
+    let today = new Date();
+
+    for (let i = 0; i < 7; i++) {
+      // geetting date with index
+      let currentDate = new Date(today);
+      currentDate.setDate(today.getDate() + i);
+
+      // setting end time of the date wih index
+      let endTime = new Date();
+      endTime.setDate(today.getDate() + 1);
+      endTime.setHours(21, 0, 0, 0);
+
+      // setting hours
+
+      if (today.getDate() === currentDate.getDate()) {
+        currentDate.setHours(
+          currentDate.getHours() > 10 ? currentDate.getHours() + 1 : 10
+        );
+        currentDate.setMinutes(currentDate.getMinutes() > 30 ? 30 : 0);
+      } else {
+        currentDate.setHours(10);
+        currentDate.setMinutes(0);
+      }
+
+      let timeSlots = [];
+      while (currentDate < endTime) {
+        let formattedTime = currentDate.toLocaleTimeString([], {
+          hour: "2 digits",
+          minute: "2 digits",
+        });
+
+        // add slots to arry
+        timeSlots.push({
+          datetime: new Date(currentDate),
+          time: formattedTime,
+        });
+
+        // increment current time by 30 minites
+        currentDate.setMinutes(currentDate.getMinutes() + 30);
+      }
+      setdocSlots((prev) => [...prev, timeSlots]);
+    }
+  };
+
   useEffect(() => {
     fetchDocInfo();
   }, [doctors, docId]);
+
+  useEffect(() => {
+    getAvailableSlots();
+  }, [doctor]);
+
+  useEffect(() => {
+    console.log(docSlots);
+  }, [docSlots]);
 
   return (
     <div>
