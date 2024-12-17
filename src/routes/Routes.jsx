@@ -4,6 +4,7 @@ import HomePage from "../pages/homePage/HomePage";
 import Doctors from "../pages/doctors/Doctors";
 import CardDetails from "../pages/cardDetails/CardDetails";
 import AboutPage from "../pages/aboutPage/AboutPage";
+import LoginPage from "../pages/loginPage/LoginPage";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "/doctor/:id",
         element: <CardDetails></CardDetails>,
+      },
+      {
+        path: "/login",
+        element: <LoginPage></LoginPage>,
       },
     ],
   },

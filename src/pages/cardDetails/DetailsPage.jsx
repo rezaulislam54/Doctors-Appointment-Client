@@ -1,16 +1,16 @@
-import { useLocation } from "react-router-dom";
-import { doctors } from "../../assets/assets_frontend/assets";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { doctors } from "../../assets/assets_frontend/assets";
 
-const CardDetails = () => {
-  const { docId } = useLocation();
+const DetailsPage = () => {
+  const { docId } = useParams();
   console.log(docId);
 
   const [docData, setdocData] = useState(null);
 
   const [docSlots, setdocSlots] = useState([]);
-  const [slotIndex, setslotIndex] = useState(0);
-  const [slotTime, setslotTime] = useState("");
+  //   const [slotIndex, setslotIndex] = useState(0);
+  //   const [slotTime, setslotTime] = useState("");
 
   const fetchDocInfo = () => {
     const doctor = doctors.find((doc) => doc._id === docId);
@@ -129,4 +129,4 @@ const CardDetails = () => {
   );
 };
 
-export default CardDetails;
+export default DetailsPage;
