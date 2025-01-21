@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { specialityData } from "../../../assets/assets_frontend/assets";
+import { AuthContext } from "../../../provider/AuthProvider";
+// import { specialityData } from "../../../assets/assets_frontend/assets";
 const Speciality = () => {
+  const { Speciality } = useContext(AuthContext);
+
   return (
     <div className="flex flex-col items-center justify-center text-center my-16">
       <h1 className="text-3xl font-bold mb-2">Find by Speciality</h1>
@@ -9,7 +13,7 @@ const Speciality = () => {
         your appointment hassle-free.
       </p>
       <div className="flex flex-wrap justify-center items-center gap-6 mt-8">
-        {specialityData.map((item, index) => (
+        {Speciality?.map((item, index) => (
           <Link
             className="flex flex-col items-center cursor-pointer flex-shrink-0 hover:translate-y-[-10px] transition-all duration-500"
             to={`/doctors/${item.speciality}`}

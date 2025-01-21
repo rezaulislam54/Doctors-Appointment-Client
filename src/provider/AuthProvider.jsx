@@ -17,6 +17,7 @@ export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [loading, setloading] = useState(true);
   const [Doctors, setDoctors] = useState([]);
+  const [Speciality, setSpeciality] = useState([]);
   const [user, setuser] = useState();
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
@@ -64,6 +65,12 @@ const AuthProvider = ({ children }) => {
   }, [url]);
 
   useEffect(() => {
+    fetch("http://localhost:5000/speciality")
+      .then((res) => res.json())
+      .then((data) => setSpeciality(data));
+  }, []);
+
+  useEffect(() => {
     const unsebscribe = onAuthStateChanged(auth, (currentUser) => {
       setuser(currentUser);
       setloading(false);
@@ -86,6 +93,7 @@ const AuthProvider = ({ children }) => {
     emailAndPasswordLogin,
     logOut,
     Doctors,
+    Speciality,
   };
 
   return <AuthContext.Provider value={Info}>{children}</AuthContext.Provider>;

@@ -1,24 +1,26 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { doctors } from "../../assets/assets_frontend/assets";
-import { useEffect, useState } from "react";
+// import { doctors } from "../../assets/assets_frontend/assets";
+import { useContext, useEffect, useState } from "react";
 import DoctorCard from "../../components/DoctorCard";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Doctors = () => {
+    const { Doctors } = useContext(AuthContext);
   const { speciality } = useParams();
   const [filterData, setfilterData] = useState([]);
   const navigate = useNavigate();
 
   const applyFilter = () => {
     if (speciality) {
-      setfilterData(doctors?.filter((Doc) => Doc.speciality === speciality));
+      setfilterData(Doctors?.filter((Doc) => Doc.speciality === speciality));
     } else {
-      setfilterData(doctors);
+      setfilterData(Doctors);
     }
   };
 
   useEffect(() => {
     applyFilter();
-  }, [doctors, speciality]);
+  }, [Doctors, speciality]);
 
   return (
     <div className="my-12">
