@@ -1,6 +1,9 @@
-import { doctors } from "../../../assets/assets_frontend/assets";
+// import { doctors } from "../../../assets/assets_frontend/assets";
+import { useContext } from "react";
 import DoctorCard from "../../../components/DoctorCard";
+import { AuthContext } from "../../../provider/AuthProvider";
 const TopDoctors = () => {
+  const { Doctors } = useContext(AuthContext);
   return (
     <div className="my-16">
       <div className="text-center">
@@ -8,7 +11,7 @@ const TopDoctors = () => {
         <p>Simply browse through our extensive list of trusted doctors.</p>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 mt-8">
-        {doctors?.slice(0, 10)?.map((item, idex) => (
+        {Doctors?.slice(0, 10)?.map((item, idex) => (
           <DoctorCard key={idex} item={item}></DoctorCard>
         ))}
       </div>

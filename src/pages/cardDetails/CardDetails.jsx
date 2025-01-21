@@ -1,21 +1,17 @@
-import { useLocation } from "react-router-dom";
-import { doctors } from "../../assets/assets_frontend/assets";
+import { useLoaderData } from "react-router-dom";
+// import { doctors } from "../../assets/assets_frontend/assets";
 import { useEffect, useState } from "react";
 
 const CardDetails = () => {
-  const { docId } = useLocation();
-  console.log(docId);
-
-  const [docData, setdocData] = useState(null);
-
+  const doctor = useLoaderData();
   const [docSlots, setdocSlots] = useState([]);
   const [slotIndex, setslotIndex] = useState(0);
   const [slotTime, setslotTime] = useState("");
 
-  const fetchDocInfo = () => {
-    const doctor = doctors.find((doc) => doc._id === docId);
-    setdocData(doctor);
-  };
+  // const fetchDocInfo = () => {
+  //   const doctor = doctors.find((doc) => doc._id === docId);
+  //   setdocData(doctor);
+  // };
 
   const getAvailableSlots = async () => {
     setdocSlots([]);
@@ -66,10 +62,6 @@ const CardDetails = () => {
   };
 
   useEffect(() => {
-    fetchDocInfo();
-  }, [doctors, docId]);
-
-  useEffect(() => {
     getAvailableSlots();
   }, []);
 
@@ -82,12 +74,12 @@ const CardDetails = () => {
       <div className="flex flex-col sm:flex-row gap-4">
         <img
           className="bg-primary w-full sm:max-w-72 rounded-lg"
-          src={docData?.image}
+          src={doctor?.image}
           alt=""
         />
         <div className="flex-1 border border-[#ADADAD] rounded-lg p-8 py-7 bg-white mx-2 sm:mx-0 mt-[-80px] sm:mt-0">
           <div className="flex gap-2 items-center">
-            <h1 className="text-4xl font-semibold ">Dr. Richard James</h1>
+            <h1 className="text-4xl font-semibold ">{}</h1>
             <img
               className="w-6"
               src="https://res.cloudinary.com/dvp64j4a3/image/upload/v1733842215/download_gi5a9n.svg"
@@ -95,8 +87,10 @@ const CardDetails = () => {
             />
           </div>
           <p className="flex gap-4 my-3">
-            MBBS - General physician{" "}
-            <span className="border rounded-full px-2">4 Years</span>
+            {doctor?.degree} - {doctor?.name}
+            <span className="border rounded-full px-2">
+              {doctor?.experience}
+            </span>
           </p>
           <div>
             <p className="flex gap-2">
@@ -106,17 +100,10 @@ const CardDetails = () => {
                 alt=""
               />
             </p>
-            <p className="max-w-[700px]">
-              Dr. Davis has a strong commitment to delivering comprehensive
-              medical care, focusing on preventive medicine, early diagnosis,
-              and effective treatment strategies. Dr. Davis has a strong
-              commitment to delivering comprehensive medical care, focusing on
-              preventive medicine, early diagnosis, and effective treatment
-              strategies.
-            </p>
+            <p className="max-w-[700px]">{doctor?.about}</p>
           </div>
           <h3 className="mt-4 text-gray-600 font-medium">
-            Appointment fee: $50
+            Appointment fee: {doctor?.fees}
           </h3>
         </div>
       </div>
