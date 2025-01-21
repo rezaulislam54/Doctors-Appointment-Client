@@ -70,7 +70,7 @@ const CardDetails = () => {
   }, [docSlots]);
 
   return (
-    <div>
+    <div className="mt-4">
       <div className="flex flex-col sm:flex-row gap-4">
         <img
           className="bg-primary w-full sm:max-w-72 rounded-lg"
@@ -79,7 +79,7 @@ const CardDetails = () => {
         />
         <div className="flex-1 border border-[#ADADAD] rounded-lg p-8 py-7 bg-white mx-2 sm:mx-0 mt-[-80px] sm:mt-0">
           <div className="flex gap-2 items-center">
-            <h1 className="text-4xl font-semibold ">{}</h1>
+            <h1 className="text-4xl font-semibold ">{doctor?.name}</h1>
             <img
               className="w-6"
               src="https://res.cloudinary.com/dvp64j4a3/image/upload/v1733842215/download_gi5a9n.svg"
@@ -87,7 +87,7 @@ const CardDetails = () => {
             />
           </div>
           <p className="flex gap-4 my-3">
-            {doctor?.degree} - {doctor?.name}
+            {doctor?.degree} - {doctor?.speciality}
             <span className="border rounded-full px-2">
               {doctor?.experience}
             </span>
@@ -103,7 +103,7 @@ const CardDetails = () => {
             <p className="max-w-[700px]">{doctor?.about}</p>
           </div>
           <h3 className="mt-4 text-gray-600 font-medium">
-            Appointment fee: {doctor?.fees}
+            Appointment fee: ${doctor?.fees}
           </h3>
         </div>
       </div>
