@@ -21,7 +21,13 @@ Prescripto is a doctor appointment booking website that provides users with a se
 - **My Profile**: View patient details and manage your personal information.
 - **My Appointments**: See your appointment details with options to pay for or cancel appointments directly.
 
+## Mobile Responsive:
+- Prescripto is fully optimized for mobile devices, ensuring a smooth user experience on any platform.
+
 ## Installation
 1. Clone the repository: 
    ```bash
    https://github.com/rezaulislam54/Doctors-Appointment-Client.git
+
+ 
+ This project is designed to offer a user-friendly and efficient way for patients to book appointments and manage their healthcare needs.
