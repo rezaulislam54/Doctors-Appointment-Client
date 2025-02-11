@@ -1,226 +1,77 @@
-import { useContext } from "react";
-import { AuthContext } from "../provider/AuthProvider";
-import Swal from "sweetalert2";
-import { Link, NavLink } from "react-router-dom";
-import logo from "../assets/assets_frontend/logo.svg";
-// import Spinar from "./Spinar";
+import React, { useContext, useState } from 'react'
+import { assets } from '../assets/assets'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { AppContext } from '../context/AppContext'
 
-const Nav = () => {
-  const { user, logOut } = useContext(AuthContext);
+const Navbar = () => {
 
-  const handleLogOut = (e) => {
-    e.preventDefault();
-    if (user) {
-      logOut().then(() => {
-        // console.log(result.user);
-        Swal.fire({
-          title: "Success!",
-          text: "User Logout Successfully!",
-          icon: "success",
-          confirmButtonText: "Ok",
-        });
-      });
-    }
-  };
+  const navigate = useNavigate()
 
-  const navlinks = (
-    <>
-      <NavLink
-        to={"/"}
-        className={({ isActive, isPending }) =>
-          isPending ? (
-            <Spinar></Spinar>
-          ) : isActive ? (
-            "text-primary font-semibold md:border-b-2 border-[#FF497C]"
-          ) : (
-            "font-semibold"
-          )
-        }
-      >
-        <li>
-          <a>Home</a>
-        </li>
-      </NavLink>
-      <NavLink
-        to={"/doctors"}
-        className={({ isActive, isPending }) =>
-          isPending ? (
-            // <Spinar></Spinar>
-            <p>Loading.....</p>
-          ) : isActive ? (
-            "text-primary font-semibold md:border-b-2 border-[#FF497C]"
-          ) : (
-            "font-semibold"
-          )
-        }
-      >
-        <li>
-          <a>All Doctors</a>
-        </li>
-      </NavLink>
-      <NavLink
-        to={"/about"}
-        className={({ isActive, isPending }) =>
-          isPending ? (
-            // <Spinar></Spinar>
-            <p>Loading.....</p>
-          ) : isActive ? (
-            "text-primary font-semibold md:border-b-2 border-[#FF497C]"
-          ) : (
-            "font-semibold"
-          )
-        }
-      >
-        <li>
-          <a>About</a>
-        </li>
-      </NavLink>
+  const [showMenu, setShowMenu] = useState(false)
+  const { token, setToken, userData } = useContext(AppContext)
 
-      {/* <NavLink
-        to={"/myadded"}
-        className={({ isActive, isPending }) =>
-          isPending ? (
-            <Spinar></Spinar>
-          ) : isActive ? (
-            "text-primary md:border-b-2 border-[#FF497C]"
-          ) : (
-            "font-semibold"
-          )
-        }
-      >
-        <li>
-          <a>Services</a>
-        </li>
-      </NavLink> */}
+  const logout = () => {
+    localStorage.removeItem('token')
+    setToken(false)
+    navigate('/login')
+  }
 
-      <NavLink
-        to={"/addservice"}
-        className={({ isActive, isPending }) =>
-          isPending ? (
-            <Spinar></Spinar>
-          ) : isActive ? (
-            "text-primary font-semibold md:border-b-2 border-[#FF497C]"
-          ) : (
-            "font-semibold"
-          )
-        }
-      >
-        <li>
-          <a>Contact</a>
-        </li>
-      </NavLink>
-    </>
-  );
   return (
-    <div className=" h-20 bg-base-100 shadow-md">
-      <div className="navbar container mx-auto ">
-        <div className="navbar-start">
-          <Link>
-            <img className="h-14 p-1" src={logo} alt="" />
-          </Link>
-        </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal gap-4 font-medium text-[17px]">
-            {navlinks}
-          </ul>
-        </div>
-        <div className="navbar-end gap-3">
-          {/* profile Icons  */}
-          <button className="btn btn-outline btn-secondary mr-3">
-            Appointment
-          </button>
-          {user ? (
-            <div className="dropdown dropdown-end hidden md:flex">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle avatar"
-              >
-                <div className="w-10 rounded-full">
-                  {user.photoURL ? (
-                    <img alt="" src={user?.photoURL} />
-                  ) : (
-                    <img
-                      alt=""
-                      src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                    />
-                  )}
-                </div>
-              </div>
-              <ul
-                tabIndex={0}
-                className=" menu menu-md dropdown-content bg-base-100 rounded-box z-[5] mt-14 w-40 p-2 shadow"
-              >
-                <li>
-                  <a className="justify-between">Profile</a>
-                </li>
-                <li>
-                  <a>Settings</a>
-                </li>
-                <li onClick={handleLogOut}>
-                  <a>Logout</a>
-                </li>
-              </ul>
-            </div>
-          ) : (
-            <Link to={"/login"}>
-              <button className="bg-[#ff487c] text-white px-7 py-1 font-semibold rounded-md">
-                Login
-              </button>
-            </Link>
-          )}
-          {/* Menu Icons */}
+    <div className='flex items-center justify-between text-sm py-4 mb-5 border-b border-b-[#ADADAD]'>
+      <img onClick={() => navigate('/')} className='w-44 cursor-pointer' src={assets.logo} alt="" />
+      <ul className='md:flex items-start gap-5 font-medium hidden'>
+        <NavLink to='/' >
+          <li className='py-1'>HOME</li>
+          <hr className='border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden' />
+        </NavLink>
+        <NavLink to='/doctors' >
+          <li className='py-1'>ALL DOCTORS</li>
+          <hr className='border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden' />
+        </NavLink>
+        <NavLink to='/about' >
+          <li className='py-1'>ABOUT</li>
+          <hr className='border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden' />
+        </NavLink>
+        <NavLink to='/contact' >
+          <li className='py-1'>CONTACT</li>
+          <hr className='border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden' />
+        </NavLink>
+      </ul>
 
-          <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
-            </div>
-            <ul
-              tabIndex={0}
-              className="absolute right-0 menu menu-md dropdown-content bg-base-100 rounded-box z-[5] mt-1 w-52 p-2 pl-5 shadow font-medium text-[17px]"
-            >
-              {navlinks}
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle avatar mx-auto my-2"
-              >
-                <div className="w-10 rounded-full">
-                  {user?.photoURL ? (
-                    <img src={user?.photoURL} />
-                  ) : (
-                    <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-                  )}
+      <div className='flex items-center gap-4 '>
+        {
+          token && userData
+            ? <div className='flex items-center gap-2 cursor-pointer group relative'>
+              <img className='w-8 rounded-full' src={userData.image} alt="" />
+              <img className='w-2.5' src={assets.dropdown_icon} alt="" />
+              <div className='absolute top-0 right-0 pt-14 text-base font-medium text-gray-600 z-20 hidden group-hover:block'>
+                <div className='min-w-48 bg-gray-50 rounded flex flex-col gap-4 p-4'>
+                  <p onClick={() => navigate('/my-profile')} className='hover:text-black cursor-pointer'>My Profile</p>
+                  <p onClick={() => navigate('/my-appointments')} className='hover:text-black cursor-pointer'>My Appointments</p>
+                  <p onClick={logout} className='hover:text-black cursor-pointer'>Logout</p>
                 </div>
               </div>
-              <h1 className="text-center">
-                <p>{user?.displayName}</p>
-                <button
-                  onClick={handleLogOut}
-                  className="bg-[#ff487c] text-white w-full py-1 my-4 rounded-sm"
-                >
-                  LogOut
-                </button>
-              </h1>
-            </ul>
+            </div>
+            : <button onClick={() => navigate('/login')} className='bg-primary text-white px-8 py-3 rounded-full font-light hidden md:block'>Create account</button>
+        }
+        <img onClick={() => setShowMenu(true)} className='w-6 md:hidden' src={assets.menu_icon} alt="" />
+
+        {/* ---- Mobile Menu ---- */}
+        <div className={`md:hidden ${showMenu ? 'fixed w-full' : 'h-0 w-0'} right-0 top-0 bottom-0 z-20 overflow-hidden bg-white transition-all`}>
+          <div className='flex items-center justify-between px-5 py-6'>
+            <img src={assets.logo} className='w-36' alt="" />
+            <img onClick={() => setShowMenu(false)} src={assets.cross_icon} className='w-7' alt="" />
           </div>
+          <ul className='flex flex-col items-center gap-2 mt-5 px-5 text-lg font-medium'>
+            <NavLink onClick={() => setShowMenu(false)} to='/'><p className='px-4 py-2 rounded full inline-block'>HOME</p></NavLink>
+            <NavLink onClick={() => setShowMenu(false)} to='/doctors' ><p className='px-4 py-2 rounded full inline-block'>ALL DOCTORS</p></NavLink>
+            <NavLink onClick={() => setShowMenu(false)} to='/about' ><p className='px-4 py-2 rounded full inline-block'>ABOUT</p></NavLink>
+            <NavLink onClick={() => setShowMenu(false)} to='/contact' ><p className='px-4 py-2 rounded full inline-block'>CONTACT</p></NavLink>
+          </ul>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Nav;
+export default Navbar
